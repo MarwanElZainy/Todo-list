@@ -10,11 +10,12 @@ type Item = {
 };
 
 function TodoItem({item, setItems}: Props) {
-    const stateHandler = () => {
+    const updatedTask = {...item, completed: !item.completed}
+    const toggleComplete = (updatedTask: Item) => {
         setItems((prevState: Item[]) => {
             return prevState.map((task: Item) => {
-                if (task.id === item.id) {
-                    task.completed = !task.completed
+                if (task.id === updatedTask.id) {
+                    return updatedTask
                 }
                 return task
             })
@@ -28,8 +29,9 @@ function TodoItem({item, setItems}: Props) {
     return (
         <div>
             <input type={"checkbox"}
-                   onChange={stateHandler}
-                   checked={item.completed}/>
+                   onChange={() => toggleComplete(updatedTask)}
+                   checked={item.completed}
+            />
             <span style={{textDecorationLine: item.completed ? 'line-through' : ''}}>{item.text}</span>
             <button onClick={onDelete}>Delete</button>
         </div>

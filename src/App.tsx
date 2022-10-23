@@ -15,7 +15,7 @@ function App() {
     setItems((prevState) => [...prevState, {id: prevState.length>0? (prevState[prevState.length-1].id +1):0 , text: todo, completed:false}])
     console.log(items)
   }
-
+  console.log(items)
 
   return (
       <div>
